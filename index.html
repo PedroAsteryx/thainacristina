@@ -1,21 +1,82 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Thaina</title>
-  <style>
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; max-width: 940px; margin: 2rem auto; padding: 0 1rem; color: #222; line-height:1.5; }
-    header { text-align:center; margin-bottom:1.2rem; }
-    img.center { display:block; margin:1rem auto; max-width:100%; height:auto; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.08); }
-    a.raw { color:#0366d6; text-decoration:none; }
-    footer { text-align:center; color:#666; font-size:0.9rem; margin-top:2rem; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quer sair comigo?</title>
+<style>
+body{
+  margin:0; height:100vh; display:flex; justify-content:center; align-items:center;
+  background:#faf7f2; font-family:Arial, sans-serif; overflow:hidden;
+}
+#container{text-align:center;}
+button{
+  padding:12px 22px; margin:10px; font-size:18px; cursor:pointer;
+  border-radius:12px; border:none; background:#b64f52; color:white; transition:0.2s;
+}
+#naoBtn{
+  position:absolute;
+  background:white;
+  color:#b64f52;
+  border:2px solid #b64f52;
+}
+#opcoes{display:none;}
+#voucher{display:none; margin-top:20px;}
+.fade{opacity:0; transition:opacity .6s ease;}
+.fade.show{opacity:1;}
+</style>
 </head>
 <body>
-  <header>
-    <h1>Thaina</h1>
-    <p>Projeto Thaina — imagem incluida abaixo.</p>
-  </header>
+<div id="container">
+  <h1 id="pergunta1" class="fade show">Quer sair comigo?</h1>
 
-  <main>
+  <div id="botoesPergunta1" class="fade show">
+    <button id="simBtn">Sim</button>
+    <button id="naoBtn">Não</button>
+  </div>
+
+  <div id="opcoes">
+    <h2>O que você prefere?</h2>
+    <button class="opcao">Comer fora</button>
+    <button class="opcao">Algo na minha casa</button>
+    <button class="opcao">Algo na sua casa</button>
+  </div>
+
+  <div id="voucher">
+    <img src="IMG_20251122_110948.png" style="width:320px;" alt="Voucher premiado">
+    <p style="font-size:20px;">Use esse voucher com sabedoria, prazo de vencimento para o dia 10/12/2025</p>
+  </div>
+</div>
+
+<script>
+const naoBtn = document.getElementById('naoBtn');
+const simBtn = document.getElementById('simBtn');
+const opcoes = document.getElementById('opcoes');
+const voucher = document.getElementById('voucher');
+
+const margem = 80;
+
+function mover(){
+  const w = window.innerWidth - margem;
+  const h = window.innerHeight - margem;
+  naoBtn.style.left = (Math.random() * w) + 'px';
+  naoBtn.style.top = (Math.random() * h) + 'px';
+}
+naoBtn.addEventListener('mouseover', mover);
+naoBtn.addEventListener('click', mover);
+
+simBtn.addEventListener('click', ()=>{
+  document.getElementById('botoesPergunta1').style.display = 'none';
+  document.getElementById('pergunta1').style.display = 'none';
+  opcoes.style.display = 'block';
+});
+
+document.querySelectorAll('.opcao').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    opcoes.style.display = 'none';
+    voucher.style.display = 'block';
+  });
+});
+</script>
+</body>
+</html>
